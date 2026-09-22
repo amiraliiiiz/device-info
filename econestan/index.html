@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1120" />
+  <meta name="description" content="اقتصادستان؛ شبیه‌ساز سیاست‌گذاری و بازی اقتصادی واقع‌گرایانه" />
+  <title>اقتصادستان | شبیه‌ساز اقتصاد</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark"><span>◈</span></div>
+        <div>
+          <div class="brand-name">اقتصادستان</div>
+          <div class="brand-sub">REAL-TIME ECONOMIC SIMULATOR</div>
+        </div>
+      </div>
+      <div class="topbar-center">
+        <div class="live-pill"><span class="live-dot"></span><span>شبیه‌سازی زنده</span></div>
+        <div class="world-clock"><span class="clock-icon">◷</span><span id="sim-date">فروردین ۱۴۰۴</span><span class="clock-sep">/</span><span id="sim-month">ماه ۱</span></div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="save-btn" title="ذخیره بازی" aria-label="ذخیره بازی">⌄</button>
+        <button class="icon-btn" id="help-btn" title="راهنما" aria-label="راهنما">؟</button>
+        <div class="user-chip"><span class="avatar">م</span><span class="user-name">مدیر اقتصاد</span><span class="chevron">⌄</span></div>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar">
+        <div class="scenario-card">
+          <div class="scenario-card-top"><span class="eyebrow">سناریوی فعال</span><span class="status-dot"></span></div>
+          <div class="scenario-name" id="sidebar-scenario">اقتصاد نفتی آبادان</div>
+          <div class="scenario-meta"><span class="scenario-icon" id="sidebar-scenario-icon">🛢️</span><span id="sidebar-status">دولت در حال فعالیت</span></div>
+        </div>
+        <div class="nav-label">مرکز فرماندهی</div>
+        <nav class="main-nav" aria-label="ناوبری اصلی">
+          <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span><span>نمای کلی</span><span class="nav-badge" id="alert-badge">۰</span></button>
+          <button class="nav-item" data-view="monetary"><span class="nav-icon">◉</span><span>سیاست پولی</span></button>
+          <button class="nav-item" data-view="fiscal"><span class="nav-icon">▣</span><span>بودجه و دولت</span></button>
+          <button class="nav-item" data-view="markets"><span class="nav-icon">⌁</span><span>بازارها</span></button>
+          <button class="nav-item" data-view="portfolio"><span class="nav-icon">◫</span><span>دارایی‌های من</span></button>
+          <button class="nav-item" data-view="news"><span class="nav-icon">◌</span><span>اتاق خبر</span><span class="nav-badge accent" id="news-badge">۰</span></button>
+        </nav>
+        <div class="nav-label lower-label">ابزارها</div>
+        <nav class="main-nav secondary-nav">
+          <button class="nav-item" id="new-game-btn"><span class="nav-icon">＋</span><span>بازی جدید</span></button>
+          <button class="nav-item" id="reset-btn"><span class="nav-icon">↻</span><span>شروع مجدد</span></button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="mini-goal"><div class="mini-goal-head"><span>امتیاز حکمرانی</span><strong id="governance-score">۵۲</strong></div><div class="progress-track"><span id="governance-progress" style="width:52%"></span></div><small>اعتماد عمومی و ثبات اقتصادی</small></div>
+          <div class="sidebar-footer"><span class="secure-icon">✦</span><span>داده‌ها روی همین دستگاه ذخیره می‌شوند</span></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="mobile-header-row"><button class="mobile-menu" id="mobile-menu">☰</button><span id="mobile-title">نمای کلی اقتصاد</span></div>
+        <div class="view" id="view-dashboard">
+          <section class="view-heading">
+            <div><div class="breadcrumb">مرکز فرماندهی <span>/</span> نمای کلی</div><h1>صبح بخیر، مدیر اقتصاد <span class="wave">✦</span></h1><p>تصویر لحظه‌ای از نبض اقتصاد کشور را زیر نظر داشته باشید.</p></div>
+            <div class="heading-actions"><button class="btn btn-ghost" id="open-events-btn"><span>✦</span> رویدادها <b id="event-count">۰</b></button><button class="btn btn-primary" id="next-month-btn"><span>▶</span> ماه بعد</button></div>
+          </section>
+          <div class="control-strip card">
+            <div class="control-state"><span class="pulse-ring" id="play-state-dot"></span><span id="play-state-text">شبیه‌سازی متوقف است</span></div>
+            <div class="control-center"><button class="round-control" id="play-btn" aria-label="شروع یا توقف شبیه‌سازی">▶</button><div class="speed-control"><span>سرعت</span><button data-speed="0.5">۰٫۵×</button><button class="selected" data-speed="1">۱×</button><button data-speed="3">۳×</button><button data-speed="8">۸×</button></div></div>
+            <div class="control-hint"><span class="key-hint">Space</span><span>برای شروع/توقف</span></div>
+          </div>
+          <section class="metric-grid" id="headline-metrics"></section>
+          <div class="dashboard-grid">
+            <section class="card chart-card main-chart-card">
+              <div class="card-head"><div><div class="section-kicker">رشد و تولید</div><h2>تولید ناخالص داخلی</h2></div><div class="chart-legend"><span><i class="legend-dot blue"></i>GDP واقعی</span><span class="trend-chip" id="gdp-trend">—</span></div></div>
+              <div class="chart-value-row"><strong id="gdp-chart-value">—</strong><span>واحد اقتصادی</span><span class="muted-sep">در ۱۲ ماه گذشته</span></div>
+              <canvas class="line-chart" id="gdp-chart" height="220"></canvas>
+            </section>
+            <section class="card health-card">
+              <div class="card-head"><div><div class="section-kicker">نبض کشور</div><h2>شاخص‌های کلیدی</h2></div><span class="tiny-live">LIVE</span></div>
+              <div class="health-row"><div class="gauge-wrap"><canvas id="confidence-gauge" width="150" height="100"></canvas><span>اعتماد بازار</span></div><div class="gauge-wrap"><canvas id="approval-gauge" width="150" height="100"></canvas><span>محبوبیت دولت</span></div></div>
+              <div class="health-divider"></div>
+              <div class="health-list"><div><span class="health-icon green">↗</span><span>رشد سالانه</span><strong id="health-growth">—</strong></div><div><span class="health-icon red">◒</span><span>بیکاری</span><strong id="health-unemp">—</strong></div><div><span class="health-icon gold">◇</span><span>ریسک کشور</span><strong id="health-risk">—</strong></div></div>
+            </section>
+          </div>
+          <div class="dashboard-grid lower-grid">
+            <section class="card chart-card"><div class="card-head"><div><div class="section-kicker">قدرت خرید</div><h2>تورم و نرخ ارز</h2></div><button class="text-btn" data-view-link="markets">مشاهده بازارها ←</button></div><div class="dual-stat"><div><span>تورم سالانه</span><strong id="infl-chart-value">—</strong></div><div><span>دلار آزاد</span><strong id="fx-chart-value">—</strong></div></div><canvas class="line-chart compact" id="infl-chart" height="165"></canvas></section>
+            <section class="card news-card"><div class="card-head"><div><div class="section-kicker">رسانه اقتصادستان</div><h2>آخرین خبرها</h2></div><button class="text-btn" data-view-link="news">همه خبرها ←</button></div><div class="news-list" id="dashboard-news"></div></section>
+          </div>
+        </div>
+
+        <div class="view hidden" id="view-monetary">
+          <section class="view-heading"><div><div class="breadcrumb">مرکز فرماندهی <span>/</span> سیاست پولی</div><h1>بانک مرکزی</h1><p>با نرخ بهره و نقدینگی، بین رشد کوتاه‌مدت و ثبات قیمت‌ها تعادل بسازید.</p></div><div class="heading-status"><span class="status-dot"></span>سیاست‌گذاری فعال</div></section>
+          <div class="policy-alert" id="monetary-alert"></div>
+          <div class="policy-layout"><div class="policy-main"><section class="card policy-card"><div class="card-head"><div><div class="section-kicker">ابزار اصلی</div><h2>نرخ سیاستی</h2></div><div class="big-policy-value" id="policy-rate-value">—</div></div><p class="card-description">نرخ بهره واقعی روی وام‌گیری، سرمایه‌گذاری، تورم و قیمت دارایی‌ها اثر می‌گذارد.</p><div class="range-wrap"><input type="range" id="policy-rate-slider" min="0.01" max="0.65" step="0.005" /><div class="range-labels"><span>۰٪؛ پول ارزان</span><span>۶۵٪؛ سیاست انقباضی</span></div></div><div class="policy-impact" id="rate-impact"></div></section><div class="two-col"><section class="card policy-card"><div class="card-head"><div><div class="section-kicker">نقدینگی</div><h2>عملیات بازار باز</h2></div><span class="policy-icon blue-bg">◉</span></div><p class="card-description">خرید اوراق، پایه پولی را افزایش می‌دهد و به رونق اعتبار کمک می‌کند؛ اما با تأخیر تورم‌زا است.</p><div class="inline-stat"><span>تزریق فعلی</span><strong id="qe-current">خاموش</strong></div><button class="btn btn-outline full" id="qe-btn">شروع تزریق نقدینگی</button><small class="cooldown" id="qe-cooldown"></small></section><section class="card policy-card"><div class="card-head"><div><div class="section-kicker">ثبات بانکی</div><h2>ذخیره قانونی</h2></div><span class="policy-icon purple-bg">▤</span></div><p class="card-description">ذخیره بیشتر، ریسک هجوم بانکی را کم می‌کند اما قدرت وام‌دهی بانک‌ها را کاهش می‌دهد.</p><div class="big-policy-value small" id="reserve-value">—</div><input type="range" id="reserve-slider" min="0.04" max="0.35" step="0.005" /><div class="range-labels"><span>۴٪ وام‌دهی بالا</span><span>۳۵٪ محافظه‌کار</span></div></section></div></div><aside class="policy-side"><section class="card snapshot-card"><div class="card-head"><div><div class="section-kicker">گزارش بانک مرکزی</div><h2>وضعیت پولی</h2></div><span class="report-icon">⌁</span></div><div class="snapshot-list"><div><span>نقدینگی M2</span><strong id="m2-value">—</strong></div><div><span>رشد نقدینگی</span><strong id="m2-growth">—</strong></div><div><span>نرخ بازار</span><strong id="market-rate">—</strong></div><div><span>وام‌های بانکی</span><strong id="loans-value">—</strong></div><div><span>مطالبات معوق</span><strong id="npl-value">—</strong></div><div><span>سلامت بانک‌ها</span><strong id="bank-health">—</strong></div></div><div class="regime-box"><div><span class="section-kicker">رژیم بازار ارز</span><small id="fx-regime-note">قیمت با عرضه و تقاضا کشف می‌شود.</small></div><div class="regime-toggle"><button data-fx-regime="float" class="active">شناور</button><button data-fx-regime="managed">مدیریت‌شده</button></div></div><div class="mini-chart-title">روند تورم و نرخ سیاستی</div><canvas id="policy-chart" class="line-chart" height="145"></canvas></section></aside></div>
+        </div>
+
+        <div class="view hidden" id="view-fiscal">
+          <section class="view-heading"><div><div class="breadcrumb">مرکز فرماندهی <span>/</span> بودجه و دولت</div><h1>وزارت دارایی و بودجه</h1><p>درآمدها را جمع کن، هوشمندانه خرج کن و بدهی دولت را تحت کنترل نگه دار.</p></div><div class="heading-status treasury"><span>◈</span> خزانه‌داری ملی</div></section>
+          <div class="metric-grid fiscal-metrics" id="fiscal-metrics"></div>
+          <div class="fiscal-layout"><section class="card spending-card"><div class="card-head"><div><div class="section-kicker">تصمیم‌های ساختاری</div><h2>ترکیب مخارج دولت</h2></div><span class="budget-year" id="budget-year">بودجه ۱۴۰۴</span></div><p class="card-description">هر واحد سرمایه‌گذاری امروز، ظرفیت تولید فردا است. اسلایدرها سهمی از GDP سالانه را مشخص می‌کنند.</p><div class="spending-list" id="spending-list"></div><div class="spending-total"><span>مجموع مخارج بدون بهره</span><strong id="spending-total-value">—</strong></div><div class="tax-policy"><div class="tax-policy-head"><div><div class="section-kicker">اهرم‌های درآمدی</div><h2>سیاست مالیاتی</h2></div><span>تغییر آهسته، اثر بزرگ</span></div><div class="tax-grid"><label><span>مالیات درآمد</span><input type="range" id="income-tax-slider" min="0" max="0.4" step="0.005"><output id="income-tax-value">—</output></label><label><span>مالیات شرکت‌ها</span><input type="range" id="corp-tax-slider" min="0" max="0.5" step="0.005"><output id="corp-tax-value">—</output></label><label><span>مالیات بر ارزش افزوده</span><input type="range" id="vat-slider" min="0" max="0.25" step="0.005"><output id="vat-value">—</output></label><label><span>تعرفه واردات</span><input type="range" id="tariff-slider" min="0" max="0.4" step="0.005"><output id="tariff-value">—</output></label></div></div></section><div class="fiscal-side"><section class="card budget-chart-card"><div class="card-head"><div><div class="section-kicker">ترازنامه دولت</div><h2>درآمد در برابر هزینه</h2></div></div><canvas id="budget-bars" height="185"></canvas><div class="budget-foot"><span>بدهی به GDP</span><strong id="debt-gdp-value">—</strong></div></section><section class="card reform-card"><div class="reform-icon">⛽</div><div><div class="section-kicker">تصمیم سخت</div><h2>اصلاح یارانه انرژی</h2><p>یارانه پنهان را هدفمند کن؛ یک شوک قیمتی کوتاه‌مدت، اما فضای بودجه‌ای و بهره‌وری بلندمدت.</p></div><button class="btn btn-outline full" id="subsidy-btn">اجرای اصلاحات</button><span class="reform-done" id="reform-status"></span></section></div></div>
+        </div>
+
+        <div class="view hidden" id="view-markets">
+          <section class="view-heading"><div><div class="breadcrumb">مرکز فرماندهی <span>/</span> بازارها</div><h1>رصد بازارها</h1><p>بازار سهام، ارز، انرژی و مسکن هر ماه به تصمیم‌های شما واکنش نشان می‌دهند.</p></div><div class="market-ticker"><span>شاخص کل</span><strong id="market-index-top">—</strong><span id="market-index-change">—</span></div></section>
+          <div class="market-overview-grid" id="market-overview"></div>
+          <section class="card market-table-card"><div class="card-head"><div><div class="section-kicker">بورس اقتصادستان</div><h2>تابلوی معاملات</h2></div><div class="table-tools"><button class="filter-chip active" data-sector="all">همه</button><button class="filter-chip" data-sector="بانکی">بانکی</button><button class="filter-chip" data-sector="فلزات">صنعتی</button><button class="filter-chip" data-sector="نفت و گاز">انرژی</button></div></div><div class="table-scroll"><table class="market-table"><thead><tr><th>نماد / شرکت</th><th>بخش</th><th>قیمت</th><th>تغییر</th><th>EPS</th><th>P/E</th><th>عملیات</th></tr></thead><tbody id="market-body"></tbody></table></div></section>
+          <div class="market-bottom-grid"><section class="card chart-card"><div class="card-head"><div><div class="section-kicker">شاخص کل بورس</div><h2>روند بازار سهام</h2></div></div><canvas id="market-chart" class="line-chart" height="190"></canvas></section><section class="card chart-card"><div class="card-head"><div><div class="section-kicker">دارایی فیزیکی</div><h2>شاخص مسکن</h2></div><span class="trend-chip" id="hpi-growth">—</span></div><canvas id="housing-chart" class="line-chart" height="190"></canvas></section></div>
+        </div>
+
+        <div class="view hidden" id="view-portfolio">
+          <section class="view-heading"><div><div class="breadcrumb">مرکز فرماندهی <span>/</span> دارایی‌های من</div><h1>اتاق سرمایه‌گذاری</h1><p>ثروت شخصی‌ات را در برابر تورم حفظ کن و از رشد اقتصاد سهم ببر.</p></div><div class="net-worth-head"><span>ارزش خالص</span><strong id="portfolio-networth">—</strong></div></section>
+          <div class="portfolio-top" id="portfolio-summary"></div>
+          <div class="portfolio-layout"><section class="card portfolio-table-card"><div class="card-head"><div><div class="section-kicker">سبد سهام</div><h2>دارایی‌های بورسی</h2></div><button class="text-btn" data-view-link="markets">خرید سهام ←</button></div><div class="table-scroll"><table class="market-table portfolio-table"><thead><tr><th>دارایی</th><th>تعداد</th><th>قیمت فعلی</th><th>ارزش</th><th>بازده ماه</th></tr></thead><tbody id="portfolio-body"></tbody></table></div></section><section class="card realty-card"><div class="card-head"><div><div class="section-kicker">بازار ملک</div><h2>املاک و مستغلات</h2></div><span class="trend-chip" id="rent-yield">—</span></div><div class="realty-list" id="realty-list"></div></section></div>
+          <section class="card bonds-card"><div class="card-head"><div><div class="section-kicker">درآمد کم‌ریسک</div><h2>اوراق دولتی</h2></div><button class="btn btn-outline" id="buy-bond-btn">خرید اوراق</button></div><div class="bond-summary"><div><span>موجودی اوراق</span><strong id="bond-value">—</strong></div><div><span>بازده سالانه</span><strong id="bond-yield">—</strong></div><div><span>موجودی نقد</span><strong id="cash-value">—</strong></div></div></section>
+        </div>
+
+        <div class="view hidden" id="view-news">
+          <section class="view-heading"><div><div class="breadcrumb">مرکز فرماندهی <span>/</span> اتاق خبر</div><h1>اتاق خبر اقتصادستان</h1><p>هر تصمیم، هر شوک و هر دستاورد در اینجا ثبت می‌شود.</p></div><button class="btn btn-ghost" id="clear-news-btn">علامت‌گذاری همه به‌عنوان خوانده‌شده</button></section>
+          <div class="news-layout"><section class="card all-news-card"><div class="news-filter-row"><button class="filter-chip active" data-news-filter="all">همه رویدادها</button><button class="filter-chip" data-news-filter="good">مثبت</button><button class="filter-chip" data-news-filter="bad">منفی</button><button class="filter-chip" data-news-filter="info">گزارش‌ها</button></div><div class="full-news-list" id="all-news-list"></div></section><aside class="card achievements-card"><div class="card-head"><div><div class="section-kicker">پیشرفت شما</div><h2>نشان‌ها</h2></div><span class="achievement-count" id="achievement-count">۰/۱۰</span></div><div class="achievement-list" id="achievement-list"></div></aside></div>
+        </div>
+
+        <footer class="app-footer"><span>اقتصادستان v1.0</span><span>مدل شبیه‌سازی آموزشی است؛ هر تصمیم پیامد دارد.</span><span id="footer-save-status">ذخیره خودکار فعال</span></footer>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop"><div class="modal" id="modal-content" role="dialog" aria-modal="true"></div></div>
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

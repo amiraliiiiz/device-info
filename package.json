@@ -1,0 +1,14 @@
+{
+  "name": "last-nation-standing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Last Nation Standing — a single-file world dice-conquest game",
+  "scripts": {
+    "start": "npx --yes http-server -p 8000 -a 0.0.0.0 .",
+    "test": "node tools/e2e.js 150 250",
+    "data": "node tools/extract-data.js"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}

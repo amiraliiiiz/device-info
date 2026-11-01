@@ -1,0 +1,4 @@
+node_modules/
+tools/data.json
+tools/seaLinks.json
+package-lock.json

@@ -1,13 +1,18 @@
 # Last Nation Standing
 
-A single-file, offline world dice-conquest game (`index.html`) — 176 countries, a compass,
+A single-file, offline world dice-conquest game (`play.html`) — 176 countries, a compass,
 dice battles and flag-by-flag annexation. English / فارسی, with sound and speed controls.
 
-Open `index.html` in a browser, or run a local server:
+* `index.html` — start page: **play on its own page** (opens `play.html` in a new tab) and
+  **download the HTML file** (saved as `last-nation-standing.html`).
+* `play.html` — the whole game in one file, nothing external. It also carries two small
+  tools in its header: `⛶` open it on its own page, `⤓` save a copy of the file.
+
+Just double-click the downloaded file — no server, no internet needed. To serve the folder:
 
 ```bash
 npm install      # only needed for the test harness
-npm start        # http://localhost:8000
+npm start        # http://localhost:8000  →  start page
 ```
 
 ## Rule
@@ -25,7 +30,7 @@ worlds of their own: they could never be attacked and never attack, so **every m
 stopped at `Countries Left: 4`** and crowned a winner while four nations were still
 standing.
 
-What `index.html` now does:
+What the game now does:
 
 * **Sea routes** — three straits are registered as borders (Haiti–Cuba, USA–The Bahamas,
   Vanuatu–Solomon Islands), so the world graph is a single connected map and the last
@@ -45,7 +50,7 @@ What `index.html` now does:
 ## Tools
 
 ```bash
-node tools/extract-data.js   # pull the map DATA out of index.html → tools/data.json
+node tools/extract-data.js   # pull the map DATA out of play.html → tools/data.json
 node tools/seaLinks.js       # find the gaps / shortest sea crossings in the world graph
 npm test                     # plays a whole match in jsdom and checks it ends at 1
 ```

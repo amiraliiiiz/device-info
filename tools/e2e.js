@@ -5,7 +5,7 @@
 const fs = require("fs");
 const { JSDOM, VirtualConsole } = require("jsdom");
 
-const src = process.env.HTML || (__dirname + "/../index.html");
+const src = process.env.HTML || (__dirname + "/../play.html");
 const html = fs.readFileSync(src, "utf8");
 const LIMIT = Number(process.argv[2] || 240) * 1000;
 

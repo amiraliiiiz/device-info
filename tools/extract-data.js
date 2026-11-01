@@ -1,7 +1,7 @@
 /* Pulls the DATA blob (map geometry + flags) out of index.html so the other
    tools can work on it without a browser. Writes tools/data.json (gitignored). */
 const fs = require("fs");
-const src = process.env.HTML || (__dirname + "/../index.html");
+const src = process.env.HTML || (__dirname + "/../play.html");
 const s = fs.readFileSync(src, "utf8");
 const i = s.indexOf("const DATA = ");
 const j = s.indexOf("\nconst C = DATA.countries", i);
